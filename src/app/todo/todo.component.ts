@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ToggleAllTodoAction } from './todo.actions';
+/* import { ToggleAllTodoAction } from './todo.actions'; */
 import { Store } from '@ngrx/store';
 import { AppState } from '../app.reducers';
+
+import * as actions  from './todo.actions';
 
 @Component({
   selector: 'app-todo',
@@ -18,8 +20,8 @@ export class TodoComponent implements OnInit {
 
   toggleAll(){
     this.completado = !this.completado;    
-    const accion = new ToggleAllTodoAction(this.completado);
-    this.store.dispatch(accion)
+    //const accion = new ToggleAllTodoAction(this.completado);
+    this.store.dispatch(actions.toggleTodos({completado:this.completado}))
   }
 
 }

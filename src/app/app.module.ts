@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { ReactiveFormsModule } from '@angular/forms';
 import { appReducers } from './app.reducers';
 import { FilterPipe } from './filter/filter.pipe';
+import { TodoModule } from './todo/todo.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { FilterPipe } from './filter/filter.pipe';
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
     }),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TodoModule
   ],
   providers: [],
   bootstrap: [AppComponent]

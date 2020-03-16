@@ -5,7 +5,7 @@
     <!-- Remove this if you don't implement routing -->
     <ul class="filters">
         <li (click)="cambiarFiltro(filtro)" *ngFor="let filtro of filtrosValidos">
-            <a [ngClass]="{'selected': filtro === filtroActual}">{{filtro}}</a>
+            <a [ngClass]="{'selected': filtro === filtroActual}">{{filtro | titlecase}}</a>
         </li>
         
     </ul>

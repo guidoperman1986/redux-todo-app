@@ -27,8 +27,8 @@ export class TodoFooterComponent implements OnInit {
   }
 
   cambiarFiltro(nuevoFiltro:fromFiltro.filtrosValidos){
-    const accion = new fromFiltro.SetFiltroAction(nuevoFiltro);
-    this.store.dispatch(accion);
+    //const accion = new fromFiltro.SetFiltroAction(nuevoFiltro);
+    this.store.dispatch(fromFiltro.setFiltro({filtro:nuevoFiltro}));
   }
 
   contarPendientes(todos:Todo[]){
@@ -36,8 +36,8 @@ export class TodoFooterComponent implements OnInit {
   }
 
   limpiarCompletados(){
-    const accion = new fromTodo.BorrarTodoCompletedAction()
-    this.store.dispatch(accion)
+    //const accion = new fromTodo.BorrarTodoCompletedAction()
+    this.store.dispatch(fromTodo.borrarCompletados())
 
   }
 }

@@ -1,4 +1,15 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
+export type filtrosValidos = 'todos' | 'completados' | 'pendientes';
+
+
+export const setFiltro = createAction(
+    '[Filter] Set Filtro',
+    props<{filtro:filtrosValidos}>()
+)
+
+
+
+/* import { Action } from '@ngrx/store';
 
 export const SET_FILTRO = '[Filter] Set Filtro';
 export type filtrosValidos = 'todos' | 'completados' | 'pendientes';
@@ -9,4 +20,4 @@ export class SetFiltroAction implements Action{
     constructor (public filtro:filtrosValidos){}
 }
 
-export type acciones = SetFiltroAction;
+export type acciones = SetFiltroAction; */

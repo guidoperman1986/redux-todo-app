@@ -1,3 +1,58 @@
+import { createReducer,on } from '@ngrx/store';
+import { crear, borrar, editar, toggle, toggleTodos, borrarCompletados } from './todo.actions';
+import { Todo } from './model/todo.model';
+
+const todo1 = new Todo('Devolve la bolsa');
+const todo2 = new Todo('El cabo se enojo');
+const todo3 = new Todo('A full la mandibula');
+
+
+export const initialState:Todo[] = [
+    todo1,todo2,todo3
+];
+
+const _todoReducer = createReducer(initialState,
+        on(crear, (state, {texto}) => [...state, new Todo(texto)]),    
+        on(borrar, (state, {id}) => state.filter(todo=>todo.id != id)),    
+        on(editar, (state, {id,texto}) => state.map(todo=>{
+            if (todo.id == id){
+                return {
+                    ...todo,
+                    texto: texto
+                }
+            }else{
+                return todo;
+            }
+        })),
+        on(toggle, (state, {id,completado}) => state.map(todo=>{
+            if (todo.id == id){
+                return {
+                    ...todo,
+                    completado
+                }
+            }else{
+                return todo;
+            }
+        })),
+        on(toggleTodos,(state,{completado})=> state.map(todo=>{
+                return {
+                    ...todo,
+                    completado
+                }
+            })
+        ),
+        on(borrarCompletados,(state)=>state.filter(todo=>todo.completado != true))    
+)
+
+export function todoReducer(state,action){
+    return _todoReducer(state,action)
+}
+
+/* 
+
+
+
+
 import * as fromTodo from './todo.actions';
 import { Todo } from './model/todo.model';
 
@@ -58,4 +113,4 @@ export function todoReducer(state=estadoInicial,action:fromTodo.Acciones):Todo[]
         default:
             return state;
     }
-}
+} */

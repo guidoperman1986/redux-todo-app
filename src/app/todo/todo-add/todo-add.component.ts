@@ -16,16 +16,16 @@ export class TodoAddComponent implements OnInit {
   constructor(private store:Store<AppState>) { }
 
   ngOnInit() {
-    this.txtInput = new FormControl('', Validators.required);
+    this.txtInput = new FormControl('', [Validators.required]);
   }
 
   agregarTodo(){    
     if(this.txtInput.invalid){
       return;
     }
-
-    const accion = new fromTodo.AgregarTodoAction(this.txtInput.value);
-    this.store.dispatch(accion);
+    
+    //const accion = new fromTodo.AgregarTodoAction(this.txtInput.value);
+    this.store.dispatch(fromTodo.crear({texto:this.txtInput.value}));
 
     this.txtInput.setValue('');
   }
